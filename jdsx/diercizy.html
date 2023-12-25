@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:1600px;height:1000px"></div>
+	</body>
+	<script>
+	    //第三步：初始化echarts实例对象
+		var mychart=echarts.init(document.getElementById("ec"))
+		$.getJSON("https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json",function(r){
+			//注册地图组件
+			echarts.registerMap("中国",r)
+			//第四步：指定配置项和数据
+			var options={
+                
+                visualMap: {
+                    //分段型视觉映射组件
+                    type: 'piecewise',
+                    max: 100,
+                    min: 1,
+                    inRange: {
+                        symbolSize: [60, 200],
+                        color: ['yellow','pink','red', 'rgb(255,140,113)', 'rgb(127,17,0)']
+                    },
+                    outOfRange: {
+                        color: ['pink']
+                    },
+					pieces:[
+						{
+							gt:100,
+							label:'>100人',
+							color:'rgb(127,17,0)'
+						},
+						{
+							gte:10,
+							lte:100,
+							label:'10-100人',
+							color:'red'
+						},
+						{
+							gte:1,
+							lte:9,
+							label:'1-9人',
+							color:'rgb(255,140,113)'
+						},
+						{
+							gte:0,
+							lte:1,
+							label:'疑似',
+							color:'pink'
+						},
+						{
+							lte:0,
+							label:'0',
+							color:'white'
+						},
+					]
+                },
+				series:{
+					// type:'map',
+					// map:'中国',
+					label:{
+						show:true,
+						formatter: function (r) {
+							if(r.name=='黑龙江省'||r.name=='内蒙古自治区')
+								return r.name.substr(0,3)
+							else
+								return r.name.substr(0,2)
+						}
+					},
+					data:[
+						{
+
+						}
+					]
+				},
+				geo:{
+					//名称一定要和上面registerMap注册的名称一致
+					map:"中国",
+					itemStyle:{
+						areaColor:'red'
+					},
+					label:{
+						show:true
+					},
+					regions: [
+                    {
+					    name: '湖北省',
+					    itemStyle: {
+					        areaColor: 'rgb(127,17,0)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '浙江省',
+					    itemStyle: {
+					        areaColor: 'rgb(127,17,0)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '新疆维吾尔自治区',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '西藏自治区',
+					    itemStyle: {
+					        areaColor: 'white',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '青海省',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '宁夏回族自治区',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '甘肃省',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '吉林省',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '山西省',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '内蒙古自治区',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    {
+					    name: '贵州省',
+					    itemStyle: {
+					        areaColor: 'rgb(255,140,113)',
+					        color: 'pink'
+					    }
+					},
+                    
+                    ]
+				},
+               
+		}
+		
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+		}
+		)
+	</script>
+</html>

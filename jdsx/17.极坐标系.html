@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:600px;height:400px"></div>
+	</body>
+	<script>
+	    //第三步：初始化echarts实例对象
+		var mychart=echarts.init(document.getElementById("ec"))
+		//第四步：指定配置项和数据
+		var options={
+			polar:{
+				//极坐标的半径
+				//数组的第一项是内半径，第二项是外半径。
+				radius:["30%","60%"]
+			},
+			//极坐标系的径向轴。
+			radiusAxis:{
+				type:'category',
+				data:['星期一','星期二','星期三']
+			},
+			
+			//极坐标系的角度轴
+			angleAxis:{
+				max:50
+			},
+			series:[
+			{
+				//类型为柱状图
+				type:'bar',
+				//该系列使用的坐标系
+				 coordinateSystem:'polar',
+				//数据
+				data: [10,29,30]
+			}
+			]
+		}
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+	</script>
+</html>

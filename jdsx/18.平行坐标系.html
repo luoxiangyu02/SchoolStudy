@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:600px;height:400px"></div>
+	</body>
+	<script>
+	    //第三步：初始化echarts实例对象
+		var mychart=echarts.init(document.getElementById("ec"))
+		//第四步：指定配置项和数据
+		var options={
+			parallel:{
+				left:'40%',
+				//垂直
+				layout:'vertical'
+			},
+			//平行坐标系中的坐标轴。
+			parallelAxis:[
+				//dim坐标轴的维度序号
+				{dim:0,name:'价格'},
+				{dim:1,name:'重量'},
+				{dim:2,name:'总计'},
+				{dim:3,name:'得分',type:'category',data:['优秀','良好','中等','下']},
+			],
+			series:[{
+				type:'parallel',
+				data:[
+					[13,34,80,'优秀'],
+					[16,78,60,'良好'],
+					[65,45,79,'中等'],
+					[34,78,65,'下'],
+				]
+			}]
+		}
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+	</script>
+</html>

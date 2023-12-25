@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:600px;height:400px"></div>
+	</body>
+	<script>
+	    //第三步：初始化echarts实例对象
+		var mychart=echarts.init(document.getElementById("ec"))
+		//第四步：指定配置项和数据
+		var options={
+			series:{
+				type:'funnel',
+				data:
+				[{
+				    // 数据项的名称
+				    name: '数据1',
+				    // 数据项值8
+				    value: 5
+				}, {
+				    name: '数据2',
+				    value: 10
+				},{
+				    // 数据项的名称
+				    name: '数据3',
+				    // 数据项值8
+				    value: 15
+				}, {
+				    name: '数据4',
+				    value: 20
+				}]
+			}
+		}
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+	</script>
+</html>

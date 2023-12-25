@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:600px;height:400px"></div>
+	</body>
+	<script>
+	    //第三步：初始化echarts实例对象
+		var mychart=echarts.init(document.getElementById("ec"))
+		//第四步：指定配置项和数据
+		var options={
+			backgroundColor:'green',
+			radar:{
+				indicator: [
+				   { name: '销售', max: 6500},
+				   { name: '管理', max: 16000, color: 'red'}, // 标签设置为红色
+				   { name: '信息技术', max: 30000},
+				   { name: '客服', max: 38000},
+				   { name: '研发', max: 52000},
+				   { name: '市场', max: 25000}
+				],
+				 shape:'circle',
+				 //坐标轴轴线相关设置(指的是里面三条斜线)
+				  axisLine:{
+					  lineStyle:{
+						  color:'red'
+					  }
+				  },
+				  //坐标轴分割线
+				  splitLine:{
+					  lineStyle:{
+						  color:'red',
+						  width:2
+					  }
+				  }
+				 
+			},
+			series:{
+				type:'radar',
+				//区域填充样式。
+				 areaStyle:{
+					 color:'pink'
+				 },
+				 //线样式
+				 lineStyle:{
+					 color:'white'
+				 },
+				 //标点样式
+				 itemStyle:{
+					 color:'black'
+				 },
+				data : [
+				    {
+				        value : [4300, 10000, 28000, 35000, 50000, 19000],
+				        name : '预算分配qwer'
+				    },
+				    {
+				        value : [5000, 14000, 28000, 31000, 42000, 21000],
+				        name : '实际开销wasd'
+				    },
+					{
+					    value : [5000, 14000, 28000, 31000, 42000, 21000],
+					    name : '信息技术wasd'
+					}
+				]
+			}
+		}
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+	</script>
+</html>

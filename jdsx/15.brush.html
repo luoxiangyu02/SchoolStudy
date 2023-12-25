@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:600px;height:400px"></div>
+	</body>
+	<script>
+		//第三步：初始化echarts实例对象
+		var mychart = echarts.init(document.getElementById("ec"))
+		//第四步：指定配置项和数据
+		var options = {
+			brush:{
+				toolbox:['rect', 'polygon', 'keep','lineX','lineY','clear'],
+				inBrush:{
+					color:'red'
+				},
+				outOfBrush:{
+					color:'blue'
+				},
+				//不同系列间，选中的可以联动，从0开始数
+				//all表示所有series都进行关联
+				brushLink:'all'
+			},
+			//直角坐标系当中的x轴
+			xAxis:{
+				//类型为种类
+				type:'category',
+				//类别数据要写到类型为种类的轴中
+				data: ['周一', '周二', '周三']
+			},
+			//直角坐标系当中的Y轴
+			yAxis:{
+				//类型为值
+				type:'value',
+			},
+			//数据通常放在series属性当中
+
+			//数据集的第一种方式
+			series:[{
+				//类型为柱状图
+				type:'bar',
+				//数据
+				data: [10,29,30],
+				name:'苹果'
+			},
+			{
+				//类型为柱状图
+				type:'bar',
+				//数据
+				data: [5,24,21],
+				name:'香蕉'
+			},
+			{
+				//类型为柱状图
+				type:'bar',
+				//数据
+				data: [15,20,18],
+				name:'橘子'
+			},
+			]
+
+            
+		}
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+	</script>
+</html>

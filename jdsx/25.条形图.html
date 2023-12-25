@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:600px;height:400px"></div>
+	</body>
+	<script>
+		//第三步：初始化echarts实例对象
+		var mychart = echarts.init(document.getElementById("ec"))
+		//第四步：指定配置项和数据
+		var options = {
+			title:{
+				text:'销量'
+			},
+			//提示框组件
+			tooltip:{
+				//提示框触发的条件
+				 triggerOn:'click',
+				 //触发类型。
+				 //'item'主要在散点图，饼图等无类目轴的图表中使用。
+				 //'axis'主要在柱状图，折线图等会使用类目轴的图表中使用。
+				 trigger:'axis',
+				 //是否永远显示提示框内容
+				  alwaysShowContent:true
+			},
+			legend:{},
+			//直角坐标系当中的x轴
+			xAxis:{
+				//类型为值
+				type:'value',
+			},
+			//直角坐标系当中的Y轴
+			yAxis:{
+				//类型为种类
+				type:'category',
+				//类别数据要写到类型为种类的轴中
+				data: ['周一', '周二', '周三']
+			},
+			//数据通常放在series属性当中
+
+			//数据集的第一种方式
+			series:[{
+				//类型为柱状图
+				type:'bar',
+				//数据
+				data: [10,29,30],
+				name:'苹果'
+			},
+			{
+				//类型为柱状图
+				type:'bar',
+				//数据
+				data: [5,24,21],
+				name:'香蕉'
+			}
+			]
+
+            
+		}
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+	</script>
+</html>

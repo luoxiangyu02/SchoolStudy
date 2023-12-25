@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:1200px;height:800px"></div>
+	</body>
+	<script>
+	    //第三步：初始化echarts实例对象
+		var mychart=echarts.init(document.getElementById("ec"))
+		$.getJSON("https://geo.datav.aliyun.com/areas_v3/bound/220100_full.json",function(r){
+			//注册地图组件
+			echarts.registerMap("长春市",r)
+			//第四步：指定配置项和数据
+			var options={
+				geo:{
+					//名称一定要和上面registerMap注册的名称一致
+					map:"长春市",
+					itemStyle:{
+						areaColor:'pink'
+					},
+					label:{
+						show:true
+					},
+					regions: [{
+					    name: '朝阳区',
+					    itemStyle: {
+					        areaColor: 'red',
+					        color: 'red'
+					    }
+					}]
+				},
+				
+		}
+		
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+		}
+		)
+	</script>
+</html>

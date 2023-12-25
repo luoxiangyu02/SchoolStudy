@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 第一步：下载并引入echarts.min.js -->
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!-- 第二步：准备一个具备大小的dom容器 -->
+		<div id="ec" style="width:600px;height:400px"></div>
+	</body>
+	<script>
+	    //第三步：初始化echarts实例对象
+		var mychart=echarts.init(document.getElementById("ec"))
+		//第四步：指定配置项和数据
+		var options={
+			//直角坐标系当中的x轴
+			xAxis:{
+				//类型为种类
+				type:'category',
+				//类别数据要写到类型为种类的轴中
+				data: ['周一', '周二', '周三']
+			},
+			//直角坐标系当中的Y轴
+			yAxis:{
+				//类型为值
+				type:'value',
+			},
+			//调色盘
+			color:[
+				//线性渐变
+			// 	{
+			// 	  type: 'linear',
+			// 	  //这四个值主要是控制渐变色从左向右，或者从上向下渐变
+			// 	  x:0,
+			// 	  y: 0,
+			// 	  x2:1,
+			// 	  y2: 0,
+			// 	  colorStops: [{
+			// 	      offset: 0, color: 'red' // 0% 处的颜色
+			// 	  }, {
+			// 	      offset: 1, color: 'blue' // 100% 处的颜色
+			// 	  }],
+			// 	  global: false // 缺省为 false
+			// 	}
+			// ],
+			
+			//径向渐变
+			{
+			  type: 'radial',
+			  x: 0.5,
+			  y: 0.5,
+			  r: 0.5,
+			  colorStops: [{
+			      offset: 0, color: 'red' // 0% 处的颜色
+			  }, {
+			      offset: 1, color: 'blue' // 100% 处的颜色
+			  }],
+			  global: false // 缺省为 false
+			}
+			],
+			
+			//数据通常放在series属性当中
+			series:[{
+				//类型为柱状图
+				type:'bar',
+				//从调色盘中取色的策略
+				//'series'：按照系列分配调色盘中的颜色，同一系列中的所有数据都是用相同的颜色；
+				//'data'：按照数据项分配调色盘中的颜色，每个数据项都使用不同的颜色。
+				colorBy:'data',
+				//数据
+				data: [10,29,29]
+			}
+			]
+		}
+		//第五步：将配置项设置给echarts实例对象
+		mychart.setOption(options)
+	</script>
+</html>
