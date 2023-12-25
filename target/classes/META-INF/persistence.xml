@@ -1,0 +1,26 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <class>com.example.AITest.entity.User</class>
+        <class>com.example.AITest.entity.Session</class>
+        <class>com.example.AITest.entity.SessionMessage</class>
+        <class>com.example.AITest.entity.SessionEvaluation</class>
+        <!-- 配置数据库连接信息 -->
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/aitest" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="1234" />
+
+            <!-- 其他 OpenJPA 属性 -->
+            <property name="openjpa.Log" value="SQL=TRACE" />
+            <property name="openjpa.RuntimeUnenhancedClasses" value="supported" />
+        </properties>
+    </persistence-unit>
+
+</persistence>

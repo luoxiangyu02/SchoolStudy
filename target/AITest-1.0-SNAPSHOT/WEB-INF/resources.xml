@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+<!--    <Resource id="MyJmsResourceAdapter" type="ActiveMQResourceAdapter">-->
+<!--        brokerXmlConfig="broker:(tcp://localhost:61616)"-->
+<!--    </Resource>-->
+
+<!--    <Resource id="FooQueue" type="javax.jms.Queue"/>-->
+</tomee>
